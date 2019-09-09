@@ -1,0 +1,40 @@
+ var ProductIDArray = [];
+      $(document).on('click', '.urunSecici', function(e) {
+
+
+        // $(".urunSecici").click(function(e) {
+        var arr = ProductIDArray;
+        var checkedId = $(this).attr('id');
+        if ($(this).prop('checked')) {
+          ProductIDArray.push(checkedId);
+          arr = ProductIDArray;
+        } else {
+          jQuery.each(ProductIDArray, function(i, item) {
+            if (arr[i] == checkedId) {
+              arr.splice(i, 1);
+            }
+          });
+          ProductIDArray = arr;
+        }
+
+
+        if (ProductIDArray.length == 0) {
+          // Butonu inaktif yap 
+          $("#indirimZamUygula").attr("disabled", "disabled");
+          $("#secilenleriSil").attr("disabled", "disabled");
+        } else {
+          $("#indirimZamUygula").removeAttr("disabled");
+          $("#secilenleriSil").removeAttr("disabled", "disabled");
+
+        }
+
+        // var ids = "";
+        // jQuery.each(ProductIDArray, function(i, item) {
+        //   if (ids == "") {
+        //     ids = ProductIDArray[i];
+        //   } else {
+        //     ids = ids + "," + ProductIDArray[i];
+        //   }
+        // });
+        // alert(ids);
+      });
